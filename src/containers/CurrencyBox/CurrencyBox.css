@@ -1,0 +1,26 @@
+.CurrencyBox {
+    padding: 20px;
+    width: 80%;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+}
+
+.DropDown {
+    width: 280px;
+}
+
+.priceInf {
+    display: flex;
+    align-items: center;
+    flex-flow: column;
+}
+
+.InputIcon {
+    padding: 20px
+
+}
+
+.ui.card, .ui.cards>.card {
+    width: 100%;
+}

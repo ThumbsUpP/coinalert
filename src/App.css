@@ -1,0 +1,21 @@
+.App {
+  text-align: center;
+  background: #EEEE;
+  padding: 20px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.PriceBox {
+  width: 600px;
+  display: flex;
+  justify-content: center;
+  align-items: center
+}
+
+.App p {
+  color: rgb(27, 27, 27);
+  text-align: center;
+  font-size: 1.1rem
+}
