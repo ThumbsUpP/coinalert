@@ -25,13 +25,14 @@ class CurrencyBox extends Component {
         price : 0,
         historicData: null
       }
-      this.setState({coinsData: coinData})
-      return el
+      return this.setState({coinsData: coinData})
     })
   }
 
+
   componentDidMount () {
     //Fetching coins data (price and historic in 2 nested requests)
+
       this.state.cryptoList.map(el => {
         axios.get(`/price?fsym=${el}&tsyms=USD`).then(response => {
           let nextState = {...this.state};
@@ -46,16 +47,14 @@ class CurrencyBox extends Component {
       })
 }
  
-  onCoinChangeHandler = (event) => {
+onCoinChangeHandler = (event) => {
     //setting current coin value
     this.setState({currentCoin: event.target.innerText})
 }
-
 onInputChangeHandler = (e, data) => {
   const { value } = data
   this.setState({inputPrice: parseFloat(value)})
 }
-
 onInputSubmitHandler = () => {
   // set alerts price with value + coinname 
   const newAlert = {...this.state.alerts}
@@ -66,8 +65,10 @@ onInputSubmitHandler = () => {
   };
   this.setState({alerts: newAlert})
 }
-onDeleteAlertHandler = () => {
-  
+onDeleteAlertHandler = (key) => {
+  const updatedAlerts = {...this.state.alerts};
+  delete updatedAlerts[key];
+  this.setState({alerts : updatedAlerts})
 }
 
   render() {
@@ -83,7 +84,7 @@ onDeleteAlertHandler = () => {
           <Button style={{margin : '5px'}} circular icon='checkmark' onClick={this.onInputSubmitHandler} />
         </div>
         <div className="ContentCard" style={{width : '300px'}} >
-          <ContentCard  alertsData={this.state.alerts} deleteAlert = {this.onDeleteAlertHandler} />
+          <ContentCard  alertsData={this.state.alerts} deleteAlert={this.onDeleteAlertHandler} />
         </div>
         
       </div>);

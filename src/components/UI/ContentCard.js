@@ -1,26 +1,26 @@
 import React from 'react'
-import { Card} from 'semantic-ui-react';
+import { Card } from 'semantic-ui-react';
 import AlerItem from './alertItem'
 
-const alertsCards = (props) => {
+const contentCard = (props) => {
+
     const { alertsData } = props;
-
     let alertLists = null;
-    //<AlerItem alerts = {props.alertsData} />
-    console.log("Inside AlertsCadrs",Object.values(alertsData))
 
+    // Checking if price alert exist in the state, then maping the state to render alert item
     if (Object.keys(props.alertsData).length !== 0){
-        alertLists = Object.values(alertsData).map((el, i) => {
-            return <AlerItem coin = {el.coin} price = {el.alertPrice} dir = {el.varDir} key = {i} onclick = {props.deleteAlert}/>
+        alertLists = Object.entries(alertsData).map((alert, i) => {
+            
+            return (<AlerItem 
+                coin = {alert[1].coin} 
+                price = {alert[1].alertPrice} 
+                dir = {alert[1].varDir} 
+                key = {alert[0]} 
+                removed = {() => props.deleteAlert(alert[0])}
+                />)
         }
         )
     }
-
-    // 0: {coin: "ETH", alertPrice: 123, varDir: "bearish"}
-    // 1: {coin: "ETH", alertPrice: 345, varDir: "bearish"}
-    // 2: {coin: "ETH", alertPrice: 456, varDir: "bullish"}length: 3__proto__: Array(0)
-    //1522877446882: {coin: "ETH", alertPrice: 123, varDir: "bearish"}__proto__: Object
-
 
 return (
     <Card>
@@ -37,4 +37,4 @@ return (
 }
   
 
-export default alertsCards
+export default contentCard

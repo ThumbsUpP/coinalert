@@ -4,7 +4,7 @@ import { Icon, Item } from 'semantic-ui-react'
 const alertItem = (props) => (
 
 
-  <Item.Group>
+  <Item.Group onClick={props.removed} >
     <Item>
         <Icon name='alarm' />
       <Item.Content verticalAlign='middle'>
@@ -14,13 +14,9 @@ const alertItem = (props) => (
         <Item.Description>
             {props.price}
         </Item.Description>
-         
-      </Item.Content>
+      </Item.Content> 
     </Item>
   </Item.Group>
 )
 
 export default alertItem
-
-//{props.coinname}
-//{props.alertPrice}
