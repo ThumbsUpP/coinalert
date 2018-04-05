@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card } from 'semantic-ui-react';
+import { Card, Item } from 'semantic-ui-react';
 import AlerItem from './alertItem'
 
 const contentCard = (props) => {
@@ -12,6 +12,7 @@ const contentCard = (props) => {
         alertLists = Object.entries(alertsData).map((alert, i) => {
             
             return (<AlerItem 
+                active = {alert[1].active}
                 coin = {alert[1].coin} 
                 price = {alert[1].alertPrice} 
                 dir = {alert[1].varDir} 
@@ -30,7 +31,9 @@ return (
           </Card.Header>
         </Card.Content>
         <Card.Content>
+            <Item.Group >
             {alertLists}
+            </Item.Group >
         </Card.Content>
     </Card>
 )

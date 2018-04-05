@@ -1,22 +1,36 @@
-import React from 'react'
-import { Icon, Item } from 'semantic-ui-react'
+import React from 'react';
+import { Icon, Item } from 'semantic-ui-react';
+import Radium from 'radium';
 
-const alertItem = (props) => (
+const alertItem = (props) => {
+  
+  const style = { 
+    delIcon : {
+      position: 'absolute', 
+      right: '0',
+      ':hover': {
+        color: '#555',
+        transform: 'scale(1)',
+        transition: 'opacity 0.2s, color 0.2s, transform 0.2s',
+      },
+    }
+  }
 
-
-  <Item.Group onClick={props.removed} >
+  return(
     <Item>
-        <Icon name='alarm' />
-      <Item.Content verticalAlign='middle'>
+        <Icon name={props.active ? 'alarm' : 'alarm mute'} color='red' size='large' circular/>
+      <Item.Content >
+        <Icon className='DelIcon' name='delete' color='grey' size='small' onClick={props.removed} style={style.delIcon} key={(new Date()).getTime()} />
         <Item.Header>
           {props.coin}
         </Item.Header>
         <Item.Description>
-            {props.price}
+            ${props.price}
         </Item.Description>
+        
       </Item.Content> 
     </Item>
-  </Item.Group>
-)
+    
+)}
 
-export default alertItem
+export default Radium(alertItem)

@@ -1,0 +1,5 @@
+i.small.icon.DelIcon:hover {
+        color: #555;
+        transform: scale(1);
+        transition: opacity 0.2s, color 0.2s, transform 0.2s
+}
