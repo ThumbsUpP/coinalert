@@ -12,11 +12,11 @@ const styles = {
     }
 };
 
-const TimeTabs = () => (
+const TimeTabs = (props) => (
   <Tabs className = {classes.Tabs} inkBarStyle={styles.inkBar} tabTemplateStyle ={null} tabItemContainerStyle ={styles.tabItemContainer}  >
-    <Tab label="daily" >
+    <Tab label="daily" value="daily" onActive = {props.onTimeFrameChange} >
     </Tab>
-    <Tab label="monthly"  >
+    <Tab label="weekly" value="weekly"  onActive = {props.onTimeFrameChange} >
     </Tab>
   </Tabs>
 );

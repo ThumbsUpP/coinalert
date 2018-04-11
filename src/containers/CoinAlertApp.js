@@ -11,40 +11,41 @@ class CoinAlertApp extends Component {
         currentCoin: 'BTC',
         currentPrice: null,
         inputPrice: 0,
-        coinsData: {
-            'BTC': {
-                price: 0,
-                historicData: [],
-            },
-            'ETH': {
-                price: 0,
-                historicData: [],
-            },
-        },
+        coinsData: null,
         alerts: {},
     }
 
     componentDidMount() {
-        this.getAsyncData()
-        this.interval = setInterval(() => { this.getAsyncData() }, 5000);
+        this.createCoinsDataState();
+        this.interval = setInterval(() => {
+            if (this.state.coinsData) { 
+                this.getAsyncData();
+                this.checkThresholdPriceAlert()
+            }
+        }, 2000);
     }
 
     createCoinsDataState() {
-        const coinsData = this.state.cryptoList.map(el => {
-            coinsData[el] = {
+        let firstCoinsDataState = {};
+        this.state.cryptoList.map(el => {
+            firstCoinsDataState[el] = {
                 price: 0,
-                historicData: null
+                historicData: {
+                    daily: [],
+                    weekly: [],
+                }
             }
-            return this.setState({ coinsData })
+            return el
         })
+        this.setState({ coinsData: firstCoinsDataState })
     }
 
     getAsyncData = () => {
 
         async function asyncCall(coin) {
             try {
-                const promises = await Promise.all([axios.get(`/price?fsym=${coin}&tsyms=USD`), axios.get(`/histohour?fsym=${coin}&tsym=USD&limit=11`)])
-                return [promises[0].data.USD, promises[1].data.Data]
+                const promises = await Promise.all([axios.get(`/price?fsym=${coin}&tsyms=USD`), axios.get(`/histohour?fsym=${coin}&tsym=USD&limit=11`), axios.get(`/histoday?fsym=${coin}&tsym=USD&limit=6`)])
+                return [promises[0].data.USD, promises[1].data.Data, promises[2].data.Data]
             } catch (err) {
                 console.error(err);
             }
@@ -57,7 +58,8 @@ class CoinAlertApp extends Component {
         data.map((promises, index) => {
             promises.then(dataCoin => {
                 nextCoinsData[this.state.cryptoList[index]].price = dataCoin[0];
-                nextCoinsData[this.state.cryptoList[index]].historicData = dataCoin[1];
+                nextCoinsData[this.state.cryptoList[index]].historicData.daily = dataCoin[1];
+                nextCoinsData[this.state.cryptoList[index]].historicData.weekly = dataCoin[2];
             })
             return promises
         })

@@ -9,9 +9,11 @@ class chart extends Component {
     render() {
         const coin = this.props.coin
         let data = { ...this.props.cData };
+        const timeFrame = this.props.time
+        //console.log(data[coin].historicData[timeFrame]);
 
-        let dataToConvert = Object.values(data[coin].historicData)
-        
+        let dataToConvert = Object.values(data[coin].historicData[timeFrame])
+
 
         let closeData = [];
         let timeStamp = [];
@@ -19,20 +21,29 @@ class chart extends Component {
         dataToConvert.map((el, i) => {
             closeData.push(el.close);
             let date = new Date(el.time * 1000)
-            let hour = date.getHours()
-            timeStamp.push(hour + 'h')
+
+            if (timeFrame === 'daily') {
+                let hour = date.getHours()
+                timeStamp.push(hour + 'h')
+            } else {
+                let day = date.getDay();
+                const dayOfTheWeek = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday']
+                timeStamp.push(dayOfTheWeek[day])
+            }
+
             return el
         })
 
         //console.log(defaults);
-        
+
         defaults.global.elements.point.backgroundColor = '#2196F3';
         defaults.global.elements.point.radius = 0;
         defaults.scale.display = false;
         defaults.global.elements.point.hitRadius = 10;
         defaults.global.elements.point.hoverBorderWidth = 10
+        //easeInBack
 
-
+        defaults.global.animation.easing = 'easeOutBack'
         const options = {
             maintainAspectRatio: true,
             legend: {
@@ -52,7 +63,7 @@ class chart extends Component {
         }
         return (
             <div>
-                <Line data={datas} options={options} height={100} width={380}/>
+                <Line data={datas} options={options} height={100} width={380} />
             </div>
         );
     }

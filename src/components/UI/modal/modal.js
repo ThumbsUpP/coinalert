@@ -25,18 +25,24 @@ class modal extends Component {
 			sliderStyle : {
 				marginBottom : 'Opx',
 				color :'red'
+			},
+			submit : {
+				color: '#52D3E7'
+			},
+			cancel : {
+				color: '#F37173'
 			}
 		}
 
 		const actions = [
 			<FlatButton
 				label="Cancel"
-				primary={true}
+				labelStyle = {styles.cancel}
 				onClick={this.props.handleClose}
 			/>,
 			<FlatButton
 				label="Submit"
-				primary={true}
+				labelStyle = {styles.submit}
 				keyboardFocused={true}
 				onClick={this.props.handleSubmit}
 			/>,

@@ -11,8 +11,16 @@ import IconButton from 'material-ui/IconButton';
 
 class CoinChart extends Component {
     state = {
-        isLoaded: false
+        isLoaded: false,
+        timeFrame: 'daily'
     }
+
+    onTimeFrameChange = (e) => {
+        this.setState({
+          timeFrame: e.props.value,
+        });
+      };
+    
 
     render() {
 
@@ -48,6 +56,9 @@ class CoinChart extends Component {
         }
         const TimeNow = new Date();
 
+
+        
+
         return (
             <div className={classes.Card} >
                 <Card style={styles.cardStyles} containerStyle={styles.containerStyle}>
@@ -67,8 +78,8 @@ class CoinChart extends Component {
                                 <IconMenu
                                     iconButtonElement={<IconButton style={{width: 'auto',
                                         height: '10px', padding: '0'}} ><Expand color="white" /></IconButton>}
-                                    anchorOrigin={{ horizontal: 'right', vertical: 'top' }}
-                                    targetOrigin={{ horizontal: 'right', vertical: 'top' }}
+                                    anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
+                                    targetOrigin={{ horizontal: 'left', vertical: 'top' }}
                                 >
                                     <MenuItem value="BTC" primaryText="BTC" onClick={this.props.click} />
                                     <MenuItem value="ETH" primaryText="ETH" onClick={this.props.click} />
@@ -77,10 +88,10 @@ class CoinChart extends Component {
                         </div>
                     </CardHeader>
                     <CardMedia>
-                        <Chart cData={this.props.coinsData} coin={this.props.curCoin} price = {this.props.curPrice} />
+                        <Chart cData={this.props.coinsData} coin={this.props.curCoin} price = {this.props.curPrice} time={this.state.timeFrame} />
                     </CardMedia>
                 </Card>
-                <TimeTabs />
+                <TimeTabs onTimeFrameChange={this.onTimeFrameChange} />
             </div>
 
         );

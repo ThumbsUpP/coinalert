@@ -21,17 +21,6 @@ export default class CardExampleControlled extends React.Component {
         this.setState({ expanded: toggle });
     };
 
-
-
-/*  <AlertItem 
-            active = {alert[1].active}
-            coin = {alert[1].coin} 
-            price = {alert[1].alertPrice} 
-            dir = {alert[1].varDir} 
-            key = {alert[0]} 
-            delete = {() => props.delete(alert[0])}
-            /> */
-
     render() {
         const styles = {
             header: {
@@ -75,6 +64,9 @@ export default class CardExampleControlled extends React.Component {
                 },
             },
             toggleStyle: {
+                inputStyle : {
+                    width: '32%'
+                },
                 thumbSwitched: {
                     backgroundColor: '#59D3E5',
                 },
@@ -108,6 +100,7 @@ export default class CardExampleControlled extends React.Component {
                             style={styles.toggle}
                             thumbSwitchedStyle={styles.toggleStyle.thumbSwitched}
                             trackSwitchedStyle={styles.toggleStyle.trackSwitched}
+                            inputStyle={styles.toggleStyle.inputStyle}
                         />
                     </CardHeader>
                     <CardText style={styles.text} expandable={true}>
