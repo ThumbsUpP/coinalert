@@ -1,0 +1,47 @@
+.Card {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    flex-flow: column;
+    width: 380px;
+    margin: 20px
+}
+
+.Title {
+    color: red
+}
+
+.CoinSpan {
+    font-weight: 700
+}
+
+.CoinInfo {
+    justify-content: flex-start;
+    font-weight: 300;
+    align-self: flex-start;
+    font-size: 22px;
+}
+.HourSpan {
+    margin: 0;
+    font-size: 12px;
+    text-align: left;
+    color: #CCC;
+}
+.CoinDisplayed {
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+}
+
+.CssDot {
+    width: 8px;
+    height: 8px;
+    border-radius: 16px;
+    background-color: white;
+    margin: 0px 20px 0px 5px;
+    box-shadow: 0px 0px 0px 8px rgba(255, 255, 255, 0.08);
+    position: relative;
+    top: 8px;
+    align-self: flex-start
+
+}
