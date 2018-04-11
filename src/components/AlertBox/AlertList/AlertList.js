@@ -23,6 +23,7 @@ const AlertList = (props) => {
             backgroundColor: 'rgba(255, 255, 255, 0.2)',
         },
     }
+    console.log(props);
 
     const AlertListItem = Object.entries(props.alerts).map(alert => {
         return (<AlertItem 
@@ -33,6 +34,7 @@ const AlertList = (props) => {
             dir = {alert[1].varDir} 
             key = {alert[0]} 
             delete = {() => props.delete(alert[0])}
+            time = {alert[0]} 
             />)
         
     })

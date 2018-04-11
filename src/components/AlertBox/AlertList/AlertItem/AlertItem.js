@@ -25,7 +25,7 @@ export default class CardExampleControlled extends React.Component {
         const styles = {
             header: {
                 display: 'flex',
-                justifyContent: 'space-around'
+                justifyContent: 'space-around',
             },
             list: {
                 backgroundColor: 'rgba(255, 255, 255, 0)',
@@ -33,7 +33,7 @@ export default class CardExampleControlled extends React.Component {
                 color: 'white'
             },
             subtitleStyle: {
-                width: '70px'
+                width: '70px',
             },
             text: {
                 display: 'flex',
@@ -75,7 +75,7 @@ export default class CardExampleControlled extends React.Component {
                 },
             }
         }
-
+        
         return (
             <div className={classes.ListItem} >
                 <Card expanded={this.state.expanded} onExpandChange={this.handleExpandChange} style={styles.list} >
@@ -111,7 +111,7 @@ export default class CardExampleControlled extends React.Component {
                             style={styles.deleteIcon.medium} >
                             <DeleteSweep color='#F57071' />
                         </IconButton>
-                        Lorem ipsum do
+                        {`Alert set at ${this.props.time}`}
                     </CardText>
                 </Card>
             </div >
