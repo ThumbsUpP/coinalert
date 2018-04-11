@@ -4,6 +4,8 @@ import axios from '../utils/axios';
 import CoinChart from '../components/Chart/CoinChart';
 import classes from './CoinAlertApp.module.css';
 import AlertBox from '../components/AlertBox/AlertBox';
+import Loading from '../components/UI/Loading/Loading';
+
 
 class CoinAlertApp extends Component {
     state = {
@@ -154,7 +156,10 @@ class CoinAlertApp extends Component {
                 onDeleteAlert={this.onDeleteAlertHandler}
                 onToggleAlertHandler={this.onToggleAlertHandler}
             />)
+        } else {
+            coinchart = <Loading/>
         }
+
         return (
             <div className={classes.CoinAlert} >
                 <TopBar clicked={this.onCoinChangeHandler} />

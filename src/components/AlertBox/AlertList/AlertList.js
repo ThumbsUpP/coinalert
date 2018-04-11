@@ -23,8 +23,6 @@ const AlertList = (props) => {
             backgroundColor: 'rgba(255, 255, 255, 0.2)',
         },
     }
-    console.log(props);
-
     const AlertListItem = Object.entries(props.alerts).map(alert => {
         return (<AlertItem 
             onToggle = {() => props.onToggleHandler(alert[0])}
