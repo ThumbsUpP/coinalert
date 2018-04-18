@@ -75,7 +75,14 @@ export default class CardExampleControlled extends React.Component {
                 },
             }
         }
-        
+        let alertStatus = null;
+        if (this.props.reached){
+            alertStatus = 'Alert price has been reached'
+        } else {
+            alertStatus = 'Alert set'
+        }
+
+
         return (
             <div className={classes.ListItem} >
                 <Card expanded={this.state.expanded} onExpandChange={this.handleExpandChange} style={styles.list} >
@@ -85,7 +92,7 @@ export default class CardExampleControlled extends React.Component {
                         style={styles.header}
                         titleColor="white"
                         subtitleColor="white"
-                        subtitle={'$' + this.props.price.toLocaleString()}
+                        subtitle={this.props.currency + this.props.price.toLocaleString()}
                         iconStyle={styles.icon}
                         avatar={this.props.dir === 'bullish' ? <Avatar backgroundColor='#59D3E5' icon={<ArrowUp />} /> : <Avatar backgroundColor='#F57071' icon={<ArrowDown />} />}
                         actAsExpander={true}
@@ -111,7 +118,7 @@ export default class CardExampleControlled extends React.Component {
                             style={styles.deleteIcon.medium} >
                             <DeleteSweep color='#F57071' />
                         </IconButton>
-                        {`Alert set at ${this.props.time}`}
+                        {alertStatus}
                     </CardText>
                 </Card>
             </div >

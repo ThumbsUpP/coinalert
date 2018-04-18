@@ -65,7 +65,7 @@ class modal extends Component {
 					<Slider
 						min={this.props.price * 0.9}
 						max={this.props.price * 1.1}
-						step={0.1}
+						step={0.001}
 						value={this.props.priceSlider}
 						onChange={this.props.handleSlider}
 						style = {styles.sliderRoot}

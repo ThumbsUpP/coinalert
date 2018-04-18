@@ -33,6 +33,8 @@ const AlertList = (props) => {
             key = {alert[0]} 
             delete = {() => props.delete(alert[0])}
             time = {alert[0]} 
+            currency = {alert[1].currency}
+            reached = {alert[1].reached}
             />)
         
     })

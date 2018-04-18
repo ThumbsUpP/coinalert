@@ -55,15 +55,17 @@ class CoinChart extends Component {
             }
         }
         const TimeNow = new Date();
+        let menuItems = null;
+        menuItems = this.props.coinList.map(el => {
+            return (<MenuItem value={el} primaryText={el} onClick={this.props.click} key={el} />)
+        })
 
-
-        
 
         return (
             <div className={classes.Card} >
                 <Card style={styles.cardStyles} containerStyle={styles.containerStyle}>
                     <CardHeader
-                        title={lastPrice ? '$' + lastPrice.toLocaleString() : 'undefined'}
+                        title={lastPrice ? this.props.currency[1] + lastPrice.toLocaleString() : 'undefined'}
                         titleColor="white"
                         titleStyle={styles.titleStyles}
                         style={styles.headerStyles}
@@ -81,8 +83,7 @@ class CoinChart extends Component {
                                     anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
                                     targetOrigin={{ horizontal: 'left', vertical: 'top' }}
                                 >
-                                    <MenuItem value="BTC" primaryText="BTC" onClick={this.props.click} />
-                                    <MenuItem value="ETH" primaryText="ETH" onClick={this.props.click} />
+                                    {menuItems}
                                 </IconMenu>
                             </div>
                         </div>

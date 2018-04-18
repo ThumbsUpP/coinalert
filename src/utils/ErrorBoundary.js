@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
+import App from '../App';
+
 
 class ErrorBoundary extends Component {
     state = { hasError: false };
@@ -13,7 +16,7 @@ class ErrorBoundary extends Component {
     render() {
         if (this.state.hasError) {
             // You can render any custom fallback UI
-            return <h1>Something went wrong.</h1>;
+            ReactDOM.render(<App />, document.getElementById('root'));
         }
         return this.props.children;
     }

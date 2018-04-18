@@ -1,6 +1,10 @@
 {
+  "manifest_version": 2,
+
+  "name": "CoinAlert App",
+  "description": "This app is intended for casual cryptocoin traders who wants to be alert if they target price has been reached ",
+  "version": "0.0.1",
   "short_name": "React App",
-  "name": "Create React App Sample",
   "icons": [
     {
       "src": "favicon.ico",
@@ -8,8 +12,14 @@
       "type": "image/x-icon"
     }
   ],
+  "browser_action": {
+    "default_popup": "index.html",
+    "default_title": "Open the popup"
+  },
   "start_url": "./index.html",
   "display": "standalone",
   "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "background_color": "#ffffff",
+  "permissions": [
+  ]
 }
